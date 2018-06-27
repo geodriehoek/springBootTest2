@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron">
+        <h1>Index</h1>
+    </div>
+
+    <form method="post" th:object="${newDocForm}">
+        <div class="form-group">
+            <label for="t">title</label>
+            <input class="form-control" id="t" type="text" th:field="*{title}">
+        </div>
+        <div class="form-group">
+            <label for="b">body</label>
+            <input class="form-control" id="b" type="text" th:field="*{body}">
+        </div>
+        <input type="submit" value="SAVE" class="btn btn-primary">
+    </form>
+
+</div>
+
+</body>
+</html>

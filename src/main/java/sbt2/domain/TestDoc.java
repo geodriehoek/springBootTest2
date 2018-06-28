@@ -1,28 +1,33 @@
 package sbt2.domain;
 
+import org.elasticsearch.search.suggest.Suggest;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
-@Document(indexName = "testdocuments", type = "testdocument")
+@Document(indexName = "testdocuments", type = "testdocument", shards = 1, replicas = 0)
 public class TestDoc {
     @Id
     private String Id;
     private String title;
     private String body;
-    private String date;
+    @Field(type = FieldType.Date)
+    private Date date;
+//    private Suggest
 
     public TestDoc() {
     }
 
-    public TestDoc(String title, String body, String date) {
+    public TestDoc(String title, String body, Date date) {
         this.title = title;
         this.body = body;
         this.date = date;
     }
 
-    public TestDoc(String id, String title, String body, String date) {
+    public TestDoc(String id, String title, String body, Date date) {
         Id = id;
         this.title = title;
         this.body = body;
@@ -53,12 +58,12 @@ public class TestDoc {
         this.body = body;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     public void setDate() {
-        this.date = new Date().toString();
+        this.date = new Date();
     }
 
     @Override
